@@ -1,22 +1,44 @@
 import 'package:flutter/material.dart';
 import 'package:maids_task/core/common/common_package_assets.dart';
+import 'package:maids_task/core/data/secure_storage.dart';
 import 'package:maids_task/features/auth/presentation/screens/login_screen.dart';
 import 'package:maids_task/features/task/presentation/screens/home_screen.dart';
 
-class SplashScreen extends StatelessWidget {
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  String token = '';
+  @override
+  void initState() {
+    checkForToken();
+    super.initState();
+  }
+
+  checkForToken() async {
+    String tokenFromSs = await SecureStorage().getToken();
+    setState(() {
+      token = tokenFromSs;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Future.delayed(const Duration(milliseconds: 1000)),
+      future: Future.delayed(const Duration(milliseconds: 3000)),
       builder: ((context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
-          // TODO: check for user authentication Creedential
-          // TODO: load the todos from api and store on hive if hive box is empty
           return const Splash();
         } else {
-          return const LoginScreen();
+          if (token.isNotEmpty) {
+            return const HomeScreen();
+          } else {
+            return const LoginScreen();
+          }
         }
       }),
     );

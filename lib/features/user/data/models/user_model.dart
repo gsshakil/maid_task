@@ -8,6 +8,8 @@ class UserModel extends UserEntity {
     required super.email,
     required super.username,
     required super.password,
+    required super.token,
+    required super.message,
   });
 
   UserModel copyWith({
@@ -17,6 +19,8 @@ class UserModel extends UserEntity {
     final String? email,
     final String? username,
     final String? password,
+    final String? token,
+    final String? message,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -25,6 +29,8 @@ class UserModel extends UserEntity {
       email: email ?? this.email,
       username: username ?? this.username,
       password: password ?? this.password,
+      token: token ?? this.token,
+      message: message ?? this.message,
     );
   }
 
@@ -35,6 +41,8 @@ class UserModel extends UserEntity {
         email: '',
         username: '',
         password: '',
+        token: '',
+        message: '',
       );
 
   factory UserModel.fromJson(Map<String, dynamic> json) => UserModel(
@@ -44,5 +52,7 @@ class UserModel extends UserEntity {
         email: json["email"] ?? '',
         username: json["username"] ?? '',
         password: json["password"] ?? '',
+        token: json["token"] ?? '',
+        message: json["message"] ?? '',
       );
 }

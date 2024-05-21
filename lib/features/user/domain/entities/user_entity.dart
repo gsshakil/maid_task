@@ -7,6 +7,8 @@ class UserEntity extends Equatable {
   final String email;
   final String username;
   final String password;
+  final String token;
+  final String message;
 
   const UserEntity({
     required this.id,
@@ -15,6 +17,8 @@ class UserEntity extends Equatable {
     required this.email,
     required this.username,
     required this.password,
+    required this.token,
+    required this.message,
   });
 
   @override
@@ -24,5 +28,7 @@ class UserEntity extends Equatable {
         lastName,
         email,
         password,
+        token,
+        message,
       ];
 }

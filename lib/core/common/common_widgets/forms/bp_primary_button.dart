@@ -54,9 +54,13 @@ class BlueprintPrimaryButton extends StatelessWidget {
         height: height,
         child: Center(
           child: isLoading
-              ? CircularProgressIndicator(
-                  color: isDisabled ? disabledTextColor : textColor,
-                )
+              ? SizedBox(
+                width: 25,
+                height: 25,
+                child: CircularProgressIndicator(
+                    color: isDisabled ? disabledTextColor : textColor,
+                  ),
+              )
               : Text(
                   title,
                   style: isDisabled

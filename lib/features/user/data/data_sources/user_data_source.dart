@@ -18,7 +18,6 @@ class UserDataSource extends IUserDataSource {
         paramas: const NetworkParams(
       headers: {
         "Accept": "application/vnd.github+json",
-        "X-GitHub-Api-Version": "2022-11-28",
       },
       endPoint: ApiEndpoints.getAllUsersEndPoint,
     ));
