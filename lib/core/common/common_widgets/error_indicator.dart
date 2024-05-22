@@ -5,6 +5,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:maids_task/core/common/common_package_assets.dart';
 import 'package:maids_task/core/api/failure.dart';
 import 'package:maids_task/core/constants/color_constants.dart';
+import 'package:maids_task/core/extentions/widget_extensions.dart';
 
 class ErrorIndicator extends StatelessWidget {
   const ErrorIndicator({super.key, this.failure, this.customErrorMessage});
@@ -25,11 +26,14 @@ class ErrorIndicator extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(CommonPackageAssets.error),
+            const Icon(
+              Icons.error,
+              color: textInverse,
+            ).padding(right: 10),
             Flexible(
               child: Text(
                 _getFailureMessage(),
-                style: const TextStyle(fontSize: 12, color: warningDefault),
+                style: const TextStyle(fontSize: 12, color: textInverse),
               ),
             ),
           ],

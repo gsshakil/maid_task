@@ -13,9 +13,6 @@ class AuthCubit extends Cubit<AuthState> {
 
   AuthCubit({required this.loginUseCase}) : super(AuthInitial());
 
-  int? _userId;
-  int? get userId => _userId;
-
   void login({
     required String username,
     required String password,
@@ -28,8 +25,9 @@ class AuthCubit extends Cubit<AuthState> {
     user.fold((l) => emit(AuthError(failure: l)), (r) {
       // Save token in  storage
       SecureStorage().saveToken(r.token);
-      // save user id
-      _userId = r.id;
+      // save user id is storage
+      SecureStorage().saveUserId(r.id);
+
       emit(AuthSuccess(user: r));
     });
   }

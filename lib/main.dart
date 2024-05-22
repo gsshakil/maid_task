@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:maids_task/core/di.dart';
 import 'package:maids_task/features/auth/presentation/screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await injectDependencies();
+  // init the hive
+  await Hive.initFlutter();
+  // open a box
+  var box = await Hive.openBox('taskbox');
+
   runApp(const MyApp());
 }
 

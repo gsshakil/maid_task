@@ -22,3 +22,9 @@ final class UserSuccess extends UserState {
 
   const UserSuccess({required this.users});
 }
+
+final class CurrentUserSuccess extends UserState {
+  final UserModel user;
+
+  const CurrentUserSuccess({required this.user});
+}
