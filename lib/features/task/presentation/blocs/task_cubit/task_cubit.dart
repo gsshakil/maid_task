@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
 import 'package:dartz/dartz.dart';
 import 'package:equatable/equatable.dart';
@@ -30,7 +28,9 @@ class TaskCubit extends Cubit<TaskState> {
   //Store posts here
   final List<TaskEntity> _items = [];
   List<TaskEntity> get items => _items;
-  TaskCubit({required this.getAllTasksUseCase}) : super(TaskInitial()) {
+  TaskCubit({
+    required this.getAllTasksUseCase,
+  }) : super(TaskInitial()) {
     scrollController.addListener(
       () async {
         if (scrollController.position.pixels ==
@@ -90,10 +90,4 @@ class TaskCubit extends Cubit<TaskState> {
       });
     }
   }
-
-  addNewTask() {}
-
-  deleteTask() {}
-
-  updateTask() {}
 }

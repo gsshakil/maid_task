@@ -12,8 +12,12 @@ import 'package:maids_task/features/task/data/data_sources/i_task_data_source.da
 import 'package:maids_task/features/task/data/data_sources/task_data_source.dart';
 import 'package:maids_task/features/task/data/repository/task_repository.dart';
 import 'package:maids_task/features/task/domain/repository/i_task_repository.dart';
+import 'package:maids_task/features/task/domain/use_cases/add_new_task_usecase.dart';
+import 'package:maids_task/features/task/domain/use_cases/delete_task_usecase.dart';
 import 'package:maids_task/features/task/domain/use_cases/get_all_tasks_usecase.dart';
+import 'package:maids_task/features/task/domain/use_cases/update_task_usecase.dart';
 import 'package:maids_task/features/task/presentation/blocs/task_cubit/task_cubit.dart';
+import 'package:maids_task/features/task/presentation/blocs/task_modify_cubit/task_modify_cubit.dart';
 import 'package:maids_task/features/user/data/data_sources/i_user_data_source.dart';
 import 'package:maids_task/features/user/data/data_sources/user_data_source.dart';
 import 'package:maids_task/features/user/data/repository/user_repository.dart';
@@ -60,6 +64,15 @@ Future<void> injectDependencies() async {
   injector.registerLazySingleton<GetAllTasksUseCase>(
       () => GetAllTasksUseCase(taskRepository: injector()));
 
+  injector.registerLazySingleton<AddNewTaskUseCase>(
+      () => AddNewTaskUseCase(taskRepository: injector()));
+
+  injector.registerLazySingleton<UpdateTaskUseCase>(
+      () => UpdateTaskUseCase(taskRepository: injector()));
+
+  injector.registerLazySingleton<DeleteTaskUseCase>(
+      () => DeleteTaskUseCase(taskRepository: injector()));
+
   injector.registerLazySingleton<UserCubit>(
     () => UserCubit(
       getAllUsersUseCase: injector(),
@@ -73,5 +86,13 @@ Future<void> injectDependencies() async {
 
   injector.registerLazySingleton<TaskCubit>(
     () => TaskCubit(getAllTasksUseCase: injector()),
+  );
+
+  injector.registerLazySingleton<TaskModifyCubit>(
+    () => TaskModifyCubit(
+      addNewTaskUseCase: injector(),
+      updateTaskUseCase: injector(),
+      deleteTaskUseCase: injector(),
+    ),
   );
 }

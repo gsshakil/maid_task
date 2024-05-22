@@ -8,7 +8,12 @@ class TaskDataBase {
 
   // load the data from database
   void loadData() {
-    taskList = _taskBox.get("TASKLIST");
+    var taskListFromHive = _taskBox.get("TASKLIST");
+    if (taskListFromHive != null) {
+      taskList = taskListFromHive;
+    } else {
+      taskList = [];
+    }
   }
 
   // update the database

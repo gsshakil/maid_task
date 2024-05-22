@@ -25,12 +25,6 @@ class TaskTile extends StatelessWidget {
           children: [
             SlidableAction(
               onPressed: deleteFunction,
-              icon: Icons.edit,
-              backgroundColor: Colors.blue.shade300,
-              borderRadius: BorderRadius.circular(12),
-            ),
-            SlidableAction(
-              onPressed: deleteFunction,
               icon: Icons.delete,
               backgroundColor: Colors.red.shade300,
               borderRadius: BorderRadius.circular(12),

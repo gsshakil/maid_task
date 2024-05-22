@@ -1,8 +1,5 @@
 // Flutter imports:
 import 'package:flutter/material.dart';
-// Package imports:
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:maids_task/core/common/common_package_assets.dart';
 import 'package:maids_task/core/api/failure.dart';
 import 'package:maids_task/core/constants/color_constants.dart';
 import 'package:maids_task/core/extentions/widget_extensions.dart';
