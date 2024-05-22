@@ -175,43 +175,47 @@ class _HomeScreenState extends State<HomeScreen> {
                   ? const Center(
                       child: Text('No Item Found'),
                     )
-                  : ListView.builder(
-                      controller: taskCubut.scrollController,
-                      itemCount: db.taskList.length,
-                      itemBuilder: (context, index) {
-                        // show loading indicator if more posts are loading
-                        if (state is TaskMoreLoading) {
-                          if ((index == db.taskList.length - 1) &&
-                              db.taskList.length <
-                                  taskCubut.taskListEntity.total) {
-                            return Center(
-                              child: Container(
-                                  padding: const EdgeInsets.all(20),
-                                  height: 75,
-                                  width: 75,
-                                  child: const LoadingIndicator()),
-                            );
-                          }
-                        }
-                        return TaskTile(
-                          taskName: db.taskList[index][0],
-                          taskCompleted: db.taskList[index][1],
-                          onChanged: (value) => checkBoxChanged(
-                            value,
-                            index,
-                            db.taskList[index][2],
-                          ),
-                          deleteFunction: (value) => deleteTask(
-                            index,
-                            db.taskList[index][2],
-                          ),
-                        );
-                      },
-                    );
+                  : _buildTaskList(state);
             }
           },
         ),
       ),
+    );
+  }
+
+  ListView _buildTaskList(TaskState state) {
+    return ListView.builder(
+      padding: const EdgeInsets.symmetric(vertical: 20),
+      controller: taskCubut.scrollController,
+      itemCount: db.taskList.length,
+      itemBuilder: (context, index) {
+        // show loading indicator if more posts are loading
+        if (state is TaskMoreLoading) {
+          if ((index == db.taskList.length - 1) &&
+              db.taskList.length < taskCubut.taskListEntity.total) {
+            return Center(
+              child: Container(
+                  padding: const EdgeInsets.all(20),
+                  height: 75,
+                  width: 75,
+                  child: const LoadingIndicator()),
+            );
+          }
+        }
+        return TaskTile(
+          taskName: db.taskList[index][0],
+          taskCompleted: db.taskList[index][1],
+          onChanged: (value) => checkBoxChanged(
+            value,
+            index,
+            db.taskList[index][2],
+          ),
+          deleteFunction: (value) => deleteTask(
+            index,
+            db.taskList[index][2],
+          ),
+        );
+      },
     );
   }
 }

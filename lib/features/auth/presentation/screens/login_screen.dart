@@ -122,6 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
           child: Column(
             children: [
               BlueprintTextField(
+                key: const Key("username"),
                 controller: userNamelController,
                 label: 'User Name',
                 inputAction: TextInputAction.newline,
@@ -134,6 +135,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 15),
               BlueprintPasswordField(
+                key: const Key("password"),
                 controller: passwordController,
                 label: 'Password',
                 validator: (value) {
@@ -145,6 +147,7 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
               const SizedBox(height: 30),
               BlueprintPrimaryButton(
+                  key: const Key("loginButton"),
                   title: 'Login',
                   isLoading: authState is AuthLoading,
                   onPressed: () {

@@ -19,8 +19,12 @@ class DialogBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      content: SizedBox(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 50),
+      insetPadding: EdgeInsets.zero,
+      content: Container(
         height: 180,
+        width: MediaQuery.of(context).size.width * 0.7,
+        
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [

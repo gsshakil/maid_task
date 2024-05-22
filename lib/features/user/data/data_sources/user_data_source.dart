@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:maids_task/core/api/api_endpoints.dart';
 import 'package:maids_task/core/api/i_network_client.dart';

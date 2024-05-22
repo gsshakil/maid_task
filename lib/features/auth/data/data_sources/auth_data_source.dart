@@ -20,18 +20,21 @@ class AuthDataSource extends IAuthDataSource {
     map['username'] = username;
     map['password'] = password;
 
-    var result = await Dio().post(ApiEndpoints.loginEndPoint,
-        data: map,
-        options: Options(
-          headers: {'Content-Type': 'application/json'},
-        ));
+    try {
+      var result = await Dio().post(ApiEndpoints.loginEndPoint,
+          data: map,
+          options: Options(
+            headers: {'Content-Type': 'application/json'},
+          ));
 
-    log('result: $result');
+      UserModel response = UserModel.fromJson(result.data);
 
-    UserModel response = UserModel.fromJson(result.data);
+      return response;
+    } catch (e) {
+      UserModel response = UserModel.init()
+          .copyWith(message: 'Invalid Credentials or Something went wrong!');
 
-    log('response: $response');
-
-    return response;
+      return response;
+    }
   }
 }

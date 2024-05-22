@@ -15,8 +15,10 @@ class AuthRepository extends IAuthRepository {
     required String password,
   }) async {
     try {
-      UserModel result =
-          await authDataSource.login(username: username, password: password);
+      UserModel result = await authDataSource.login(
+        username: username,
+        password: password,
+      );
       return Right(result);
     } on ServerException catch (e) {
       return Left(ExceptionFailure(exception: e));

@@ -45,12 +45,17 @@ dependencies:
   flutter_secure_storage: ^9.2.1
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  bloc_test: ^9.1.7
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   hive_generator: ^2.0.1
   build_runner: ^2.4.10
+  mocktail: ^1.0.3
+  integration_test:
+    sdk: flutter
+
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

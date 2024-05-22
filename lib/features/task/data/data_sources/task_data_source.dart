@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
 
 import 'package:dio/dio.dart';
 import 'package:maids_task/core/api/api_endpoints.dart';
@@ -43,8 +42,6 @@ class TaskDataSource extends ITaskDataSource {
 
     TaskModel response = TaskModel.fromJson(result.data);
 
-    log('update response: $response');
-
     return response;
   }
 
@@ -55,8 +52,6 @@ class TaskDataSource extends ITaskDataSource {
     );
 
     TaskModel response = TaskModel.fromJson(result.data);
-
-    log('delete response: $response');
 
     return response;
   }
@@ -81,8 +76,6 @@ class TaskDataSource extends ITaskDataSource {
     );
 
     TaskModel response = TaskModel.fromJson(result);
-
-    log('add task: $response');
 
     return response;
   }
